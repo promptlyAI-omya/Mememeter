@@ -1033,3 +1033,414 @@ body {
         font-size: 0.88rem;
     }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   NEXT30 ENGINE — Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Cinematic Overlay ──────────────────────────────────── */
+.n30-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    pointer-events: none;
+    z-index: 50;
+    transition: background 1.5s ease;
+}
+
+.n30-overlay.n30-darken {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+/* ── Progress Dots ──────────────────────────────────────── */
+.n30-progress {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 1.8rem;
+}
+
+.n30-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s var(--ease);
+}
+
+.n30-dot.active {
+    border-color: rgba(168, 85, 247, 0.4);
+    color: #c084fc;
+    background: rgba(168, 85, 247, 0.08);
+}
+
+.n30-dot.done {
+    background: rgba(168, 85, 247, 0.15);
+    border-color: rgba(168, 85, 247, 0.5);
+    color: #c084fc;
+}
+
+/* ── Wizard Steps ───────────────────────────────────────── */
+.n30-wizard {
+    position: relative;
+    min-height: 220px;
+}
+
+.n30-step {
+    display: none;
+    animation: n30FadeIn 0.4s ease-out;
+}
+
+.n30-step.active {
+    display: block;
+}
+
+@keyframes n30FadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.n30-step-label {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* ── Option Buttons ─────────────────────────────────────── */
+.n30-option-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+
+.n30-option-btn {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-family: var(--font);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s var(--ease);
+    text-align: left;
+}
+
+.n30-option-btn:hover {
+    background: rgba(168, 85, 247, 0.05);
+    border-color: rgba(168, 85, 247, 0.2);
+    color: var(--text-primary);
+}
+
+.n30-option-btn.selected {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.35);
+    color: #c084fc;
+    font-weight: 600;
+}
+
+.n30-card-dark {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* ── Reveal Button ──────────────────────────────────────── */
+.n30-reveal-btn {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: #fff;
+    margin-top: 1rem;
+}
+
+.n30-reveal-btn:hover {
+    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
+}
+
+/* ── Loading Section ────────────────────────────────────── */
+.n30-loading-section {
+    padding: 6rem 0;
+    text-align: center;
+    position: relative;
+    z-index: 60;
+}
+
+.n30-pulse-ring {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    border: 2px solid rgba(168, 85, 247, 0.4);
+    animation: n30Pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes n30Pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4);
+    }
+
+    70% {
+        transform: scale(1.3);
+        opacity: 0.5;
+        box-shadow: 0 0 30px 10px rgba(168, 85, 247, 0);
+    }
+
+    100% {
+        transform: scale(0.8);
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
+    }
+}
+
+.n30-loading-msg {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    min-height: 1.5em;
+    transition: opacity 0.25s ease;
+}
+
+/* ── Result Card ────────────────────────────────────────── */
+.n30-result-card {
+    border-radius: var(--radius-lg);
+    padding: 2px;
+    position: relative;
+    overflow: hidden;
+    animation: glowPulse 4s ease-in-out infinite;
+}
+
+.n30-result-header {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.n30-mode-icon {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.n30-mode-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+/* ── 4 Structured Blocks ────────────────────────────────── */
+.n30-blocks {
+    padding: 0 1.8rem 1.5rem;
+}
+
+.n30-block {
+    margin-bottom: 1.4rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.n30-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.n30-block-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.n30-block-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+/* ── Closing Line ───────────────────────────────────────── */
+.n30-closing {
+    text-align: center;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--text-muted);
+    padding: 0.8rem 1.8rem 2rem;
+    opacity: 0.8;
+}
+
+/* ── Mode Glow Themes ───────────────────────────────────── */
+.n30-glow-emotional {
+    --active-glow: 168, 85, 247;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(88, 28, 135, 0.04));
+}
+
+.n30-glow-emotional .n30-mode-title {
+    color: #c084fc;
+}
+
+.n30-glow-emotional .n30-block-label {
+    color: rgba(192, 132, 252, 0.6);
+}
+
+.n30-glow-external {
+    --active-glow: 234, 179, 8;
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.12), rgba(161, 98, 7, 0.04));
+}
+
+.n30-glow-external .n30-mode-title {
+    color: #fbbf24;
+}
+
+.n30-glow-external .n30-block-label {
+    color: rgba(251, 191, 36, 0.6);
+}
+
+.n30-glow-growth {
+    --active-glow: 45, 212, 191;
+    background: linear-gradient(135deg, rgba(45, 212, 191, 0.12), rgba(15, 118, 110, 0.04));
+}
+
+.n30-glow-growth .n30-mode-title {
+    color: #2dd4bf;
+}
+
+.n30-glow-growth .n30-block-label {
+    color: rgba(45, 212, 191, 0.6);
+}
+
+.n30-glow-relationship {
+    --active-glow: 244, 114, 182;
+    background: linear-gradient(135deg, rgba(244, 114, 182, 0.12), rgba(190, 24, 93, 0.04));
+}
+
+.n30-glow-relationship .n30-mode-title {
+    color: #f472b6;
+}
+
+.n30-glow-relationship .n30-block-label {
+    color: rgba(244, 114, 182, 0.6);
+}
+
+.n30-glow-reset {
+    --active-glow: 148, 163, 184;
+    background: linear-gradient(135deg, rgba(148, 163, 184, 0.1), rgba(71, 85, 105, 0.04));
+}
+
+.n30-glow-reset .n30-mode-title {
+    color: #94a3b8;
+}
+
+.n30-glow-reset .n30-block-label {
+    color: rgba(148, 163, 184, 0.6);
+}
+
+/* ── Export Card (hidden, 1:1 for html2canvas) ──────────── */
+.n30-export-card {
+    position: fixed;
+    top: -9999px;
+    left: -9999px;
+    width: 420px;
+    height: 420px;
+    background: #06060e;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+}
+
+.n30-export-inner {
+    text-align: center;
+    padding: 2.5rem;
+    width: 100%;
+}
+
+.n30-export-header {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.n30-export-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #c084fc;
+    margin-bottom: 1.2rem;
+}
+
+.n30-export-summary {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.n30-export-closing {
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.n30-export-footer {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* ── Next30 Action Row ──────────────────────────────────── */
+.n30-actions {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* ── Next30 Responsive ──────────────────────────────────── */
+@media (max-width: 500px) {
+    .n30-mode-title {
+        font-size: 1.15rem;
+    }
+
+    .n30-blocks {
+        padding: 0 1.2rem 1.2rem;
+    }
+
+    .n30-block-text {
+        font-size: 0.85rem;
+    }
+
+    .n30-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .n30-export-card {
+        width: 340px;
+        height: 340px;
+    }
+}
