@@ -2,6 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /audio/
 
-Sitemap: https://mememeter.help/sitemap.xml
+Sitemap: https://mememeter.promptly.help/sitemap.xml
 
 # MemeMeter.help — Psychological Identity Engine Platform

@@ -244,7 +244,7 @@ const Platform = (() => {
     /* ── WhatsApp Share ────────────────────────────────────── */
     function shareWhatsApp() {
         if (!currentResult) return;
-        const t = `😂 Bhai mera MemeMeter result dekh:\n\n${currentResult.emoji} ${currentResult.title}\n"${currentResult.text}"\n\nTera kya niklega?\nCheck kar: https://MemeMeter.help`;
+        const t = `😂 Bhai mera MemeMeter result dekh:\n\n${currentResult.emoji} ${currentResult.title}\n"${currentResult.text}"\n\nTera kya niklega?\nCheck kar: https://bit.ly/mememeter`;
         window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank');
     }
 
