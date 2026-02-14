@@ -15,4 +15,11 @@
     <priority>0.9</priority>
   </url>
 
+  <url>
+    <loc>https://mememeter.promptly.help/engines/replymeter.html</loc>
+    <lastmod>2025-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>

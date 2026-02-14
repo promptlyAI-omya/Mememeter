@@ -679,3 +679,357 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   REPLYMETER ENGINE — Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Progress Dots ──────────────────────────────────────── */
+.rm-progress {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 1.8rem;
+}
+
+.rm-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s var(--ease);
+}
+
+.rm-dot.active {
+    border-color: rgba(255, 215, 0, 0.4);
+    color: var(--accent-gold);
+    background: rgba(255, 215, 0, 0.08);
+}
+
+.rm-dot.done {
+    background: rgba(255, 215, 0, 0.15);
+    border-color: rgba(255, 215, 0, 0.5);
+    color: var(--accent-gold);
+}
+
+/* ── Wizard Steps ───────────────────────────────────────── */
+.rm-wizard {
+    position: relative;
+    min-height: 200px;
+}
+
+.rm-step {
+    display: none;
+    animation: rmFadeIn 0.35s ease-out;
+}
+
+.rm-step.active {
+    display: block;
+}
+
+@keyframes rmFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.rm-step-label {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* ── Radio Buttons (large, tap-friendly) ────────────────── */
+.rm-radio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+
+.rm-radio-btn {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-family: var(--font);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s var(--ease);
+    text-align: left;
+}
+
+.rm-radio-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+}
+
+.rm-radio-btn.selected {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.35);
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+/* ── Confidence Slider ──────────────────────────────────── */
+.rm-slider-wrap {
+    padding: 1.5rem 0 2rem;
+    text-align: center;
+}
+
+.rm-slider {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    outline: none;
+}
+
+.rm-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.rm-slider::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.rm-slider-value {
+    margin-top: 0.8rem;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent-gold);
+}
+
+/* ── Check Button inside wizard ─────────────────────────── */
+.rm-check-btn {
+    margin-top: 1rem;
+}
+
+/* ── Typing Bubble Loading ──────────────────────────────── */
+.rm-loading-section {
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.rm-typing-bubble {
+    display: inline-flex;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 1rem 1.5rem;
+    border-radius: 20px 20px 20px 4px;
+    margin-bottom: 1.5rem;
+}
+
+.rm-typing-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text-secondary);
+    animation: rmTypingBounce 1.4s ease-in-out infinite;
+}
+
+.rm-typing-dot:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.rm-typing-dot:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes rmTypingBounce {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+
+    30% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+}
+
+/* ── Result Card (1:1 square) ───────────────────────────── */
+.rm-result-card {
+    border-radius: var(--radius-lg);
+    padding: 2px;
+    position: relative;
+    overflow: hidden;
+    animation: glowPulse 3s ease-in-out infinite;
+    aspect-ratio: 1 / 1;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.rm-card-inner {
+    background: var(--bg-primary);
+    border-radius: calc(var(--radius-lg) - 2px);
+    padding: 2.5rem 1.8rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* ── Percent Display ────────────────────────────────────── */
+.rm-percent-wrap {
+    margin: 1rem 0;
+}
+
+.rm-percent {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.rm-range-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.rm-dialogue {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    white-space: pre-line;
+    max-width: 300px;
+    margin: 0 auto 1.5rem;
+}
+
+/* ── Range Glow Themes ──────────────────────────────────── */
+.rm-glow-green {
+    --active-glow: 74, 222, 128;
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(34, 197, 94, 0.06));
+}
+
+.rm-glow-green .rm-percent {
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.rm-glow-green .rm-range-title {
+    color: #4ade80;
+}
+
+.rm-glow-delay {
+    --active-glow: 251, 191, 36;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.06));
+}
+
+.rm-glow-delay .rm-percent {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.rm-glow-delay .rm-range-title {
+    color: #fbbf24;
+}
+
+.rm-glow-overthink {
+    --active-glow: 251, 146, 60;
+    background: linear-gradient(135deg, rgba(251, 146, 60, 0.2), rgba(234, 88, 12, 0.06));
+}
+
+.rm-glow-overthink .rm-percent {
+    background: linear-gradient(135deg, #fb923c, #ea580c);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.rm-glow-overthink .rm-range-title {
+    color: #fb923c;
+}
+
+.rm-glow-danger {
+    --active-glow: 239, 68, 68;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(185, 28, 28, 0.08));
+}
+
+.rm-glow-danger .rm-percent {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.rm-glow-danger .rm-range-title {
+    color: #ef4444;
+}
+
+.rm-glow-brother {
+    --active-glow: 148, 163, 184;
+    background: linear-gradient(135deg, rgba(148, 163, 184, 0.15), rgba(100, 116, 139, 0.06));
+}
+
+.rm-glow-brother .rm-percent {
+    background: linear-gradient(135deg, #94a3b8, #64748b);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.rm-glow-brother .rm-range-title {
+    color: #94a3b8;
+}
+
+/* ── ReplyMeter Responsive ──────────────────────────────── */
+@media (max-width: 500px) {
+    .rm-percent {
+        font-size: 4rem;
+    }
+
+    .rm-result-card {
+        max-width: 340px;
+    }
+
+    .rm-card-inner {
+        padding: 2rem 1.4rem;
+    }
+
+    .rm-dialogue {
+        font-size: 0.88rem;
+    }
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ══ Primary SEO ═══════════════════════════════════════ -->
+    <title>ReplyMeter – Will Your Crush Reply? | Free Test</title>
+    <meta name="description"
+        content="ReplyMeter — will your crush reply? Enter your chat details and get instant reply probability. Free, fun, with audio reactions. Check your crush reply chances now!" />
+    <meta name="keywords"
+        content="reply meter, will my crush reply, crush reply test, reply probability, crush reply checker, seen zone test, reply chance calculator, blue tick test, crush reply prediction, messaging test, relationship quiz, texting quiz free, reply meter test, crush zone test" />
+    <meta name="author" content="MemeMeter.help" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://mememeter.promptly.help/engines/replymeter.html" />
+    <meta name="theme-color" content="#06060e" />
+
+    <!-- ══ Open Graph ════════════════════════════════════════ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MemeMeter.help" />
+    <meta property="og:title" content="ReplyMeter – Will Your Crush Reply? 💘" />
+    <meta property="og:description"
+        content="Check your crush reply probability! Green Signal or Bhai Zone? Find out now." />
+    <meta property="og:url" content="https://mememeter.promptly.help/engines/replymeter.html" />
+    <meta property="og:image" content="https://mememeter.promptly.help/og-image.png?v=1" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- ══ Twitter Card ══════════════════════════════════════ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ReplyMeter – Will Your Crush Reply? 💘" />
+    <meta name="twitter:description" content="Green Signal ya Bhai Zone? Check your crush reply chances now!" />
+    <meta name="twitter:image" content="https://mememeter.promptly.help/og-image.png?v=1" />
+
+    <!-- ══ Fonts & Libraries ═════════════════════════════════ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+
+    <!-- AD SLOT TOP -->
+    <div class="ad-slot" id="ad-top">
+        <span class="ad-placeholder">Ad Space</span>
+    </div>
+
+    <main class="engine-container" id="app">
+
+        <!-- ===== HEADER ===== -->
+        <header class="engine-header">
+            <h1 class="engine-logo">
+                Reply<span class="logo-accent">Meter</span><span class="logo-dot">.help</span>
+            </h1>
+            <p class="engine-tagline">Will Your Crush Reply? 💘</p>
+        </header>
+
+        <!-- ===== INPUT / WIZARD SECTION ===== -->
+        <section id="rm-input-section">
+            <div class="input-card">
+
+                <!-- Progress Dots -->
+                <div class="rm-progress" id="rm-progress">
+                    <span class="rm-dot active" data-step="0">1</span>
+                    <span class="rm-dot" data-step="1">2</span>
+                    <span class="rm-dot" data-step="2">3</span>
+                    <span class="rm-dot" data-step="3">4</span>
+                    <span class="rm-dot" data-step="4">5</span>
+                </div>
+
+                <!-- Wizard Steps Container -->
+                <div id="rm-wizard" class="rm-wizard"></div>
+
+            </div>
+        </section>
+
+        <!-- ===== LOADING SECTION ===== -->
+        <section class="rm-loading-section hidden" id="rm-loading-section">
+            <div class="rm-typing-bubble">
+                <span class="rm-typing-dot"></span>
+                <span class="rm-typing-dot"></span>
+                <span class="rm-typing-dot"></span>
+            </div>
+            <p class="loading-msg" id="rm-loading-msg">Typing status detect ho raha hai…</p>
+        </section>
+
+        <!-- ===== RESULT SECTION ===== -->
+        <section class="result-section hidden" id="rm-result-section">
+
+            <!-- Result Card (1:1 square for export) -->
+            <div class="rm-result-card rm-glow-green" id="rm-result-card">
+                <div class="rm-card-inner">
+                    <p class="meme-card-header">ReplyMeter Result 💘</p>
+                    <div class="rm-percent-wrap">
+                        <span class="rm-percent" id="rm-percent">0%</span>
+                    </div>
+                    <h2 class="rm-range-title" id="rm-range-title">Loading…</h2>
+                    <p class="rm-dialogue" id="rm-dialogue">…</p>
+                    <p class="meme-card-footer">Check yours at <strong>promptly.help</strong></p>
+                </div>
+            </div>
+
+            <!-- Audio Controls -->
+            <div class="audio-controls">
+                <button class="audio-btn" id="rm-sound-btn" title="Replay Sound">🔊 <span>Replay</span></button>
+                <button class="audio-btn" id="rm-mute-btn" title="Mute / Unmute">🔈 <span>Mute</span></button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-row">
+                <button class="action-btn" id="rm-download-btn" title="Download Result Card">
+                    📥 <span>Download</span>
+                </button>
+                <button class="action-btn" id="rm-share-btn" title="Share on WhatsApp">
+                    📤 <span>Share</span>
+                </button>
+                <button class="action-btn" id="rm-friend-btn" title="Check a Friend">
+                    👥 <span>Check Friend</span>
+                </button>
+                <button class="action-btn" id="rm-retry-btn" title="Try Again">
+                    🔄 <span>Try Again</span>
+                </button>
+            </div>
+
+        </section>
+
+        <!-- AD SLOT RESULT -->
+        <div class="ad-slot" id="ad-result">
+            <span class="ad-placeholder">Ad Space</span>
+        </div>
+
+    </main>
+
+    <!-- AD SLOT STICKY -->
+    <div class="ad-slot ad-slot--sticky" id="ad-sticky">
+        <span class="ad-placeholder">Ad Space</span>
+    </div>
+
+    <!-- Global audio element -->
+    <audio id="rmAudio" preload="none"></audio>
+
+    <!-- ReplyMeter Engine -->
+    <script src="../js/replymeter.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            ReplyMeter.init();
+        });
+    </script>
+
+</body>
+
+</html>
