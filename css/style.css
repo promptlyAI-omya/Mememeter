@@ -1,0 +1,681 @@
+/* ═══════════════════════════════════════════════════════════════
+   MemeMeter.help — Platform Stylesheet
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Reset & Root ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-deep: #06060e;
+    --bg-primary: #0a0a16;
+    --bg-card: rgba(255, 255, 255, 0.04);
+    --bg-card-hover: rgba(255, 255, 255, 0.08);
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --text-primary: #eeeef5;
+    --text-secondary: #7a7a9e;
+    --text-muted: #4a4a6a;
+    --accent-gold: #ffd700;
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --font: 'Outfit', sans-serif;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Category glows (rgb for rgba usage) */
+    --glow-alpha: 255, 215, 0;
+    --glow-savage: 168, 85, 247;
+    --glow-silent: 59, 130, 246;
+    --glow-clown: 239, 68, 68;
+    --glow-stable: 107, 114, 128;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ═══ HOMEPAGE ═══════════════════════════════════════════════ */
+.home-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.home-brand h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.3rem;
+}
+
+.brand-accent {
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brand-dot,
+.logo-dot {
+    color: var(--text-muted);
+    font-weight: 400;
+    font-size: 0.65em;
+}
+
+.home-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+}
+
+/* Engine Grid */
+.engine-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 900px;
+    width: 100%;
+}
+
+.engine-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 1.8rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s var(--ease);
+    position: relative;
+}
+
+.engine-card.live:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(255, 215, 0, 0.08);
+    border-color: rgba(255, 215, 0, 0.15);
+}
+
+.engine-card.coming-soon {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.engine-card-emoji {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.engine-card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.engine-card-desc {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.engine-card-badge {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.engine-card.live .engine-card-badge {
+    background: rgba(255, 215, 0, 0.12);
+    color: var(--accent-gold);
+}
+
+.engine-card.coming-soon .engine-card-badge {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+}
+
+.home-footer {
+    margin-top: 3rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+/* ═══ ENGINE PAGE ════════════════════════════════════════════ */
+.engine-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    min-height: 100vh;
+}
+
+/* Ad Slots */
+.ad-slot {
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.8rem 0;
+}
+
+.ad-slot--sticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--bg-deep);
+}
+
+.ad-placeholder {
+    color: var(--text-muted);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.25;
+}
+
+/* Header */
+.engine-header {
+    text-align: center;
+    padding: 1.5rem 0 1rem;
+}
+
+.engine-logo {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo-accent {
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.engine-tagline {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+}
+
+/* Input Section */
+.input-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+}
+
+.input-label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s var(--ease);
+    margin-bottom: 1.5rem;
+}
+
+.input-field::placeholder {
+    color: var(--text-muted);
+}
+
+.input-field:focus {
+    border-color: rgba(255, 215, 0, 0.4);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.06);
+}
+
+/* Mode Grid */
+.mode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 1.6rem;
+}
+
+.mode-btn {
+    padding: 0.55rem 0.3rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-family: var(--font);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+}
+
+.mode-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+}
+
+.mode-btn.active {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.3);
+    color: var(--accent-gold);
+}
+
+/* CTA Button */
+.cta-btn {
+    width: 100%;
+    padding: 0.95rem;
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #0a0a16;
+    font-family: var(--font);
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.25);
+}
+
+.cta-btn:active {
+    transform: translateY(0);
+}
+
+.cta-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.cta-btn--secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+}
+
+.cta-btn--secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+}
+
+/* Loading Section */
+.loading-section {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.loader-ring {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2rem;
+    position: relative;
+}
+
+.loader-ring .ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid transparent;
+}
+
+.loader-ring .ring:nth-child(1) {
+    border-top-color: #ffd700;
+    animation: spin 1.2s linear infinite;
+}
+
+.loader-ring .ring:nth-child(2) {
+    border-right-color: #a855f7;
+    animation: spin 1.8s linear infinite reverse;
+}
+
+.loader-ring .ring:nth-child(3) {
+    border-bottom-color: #3b82f6;
+    animation: spin 2.4s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-msg {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    min-height: 1.5em;
+}
+
+/* ═══ RESULT SECTION ═════════════════════════════════════════ */
+.result-section {
+    padding: 1rem 0 2rem;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Meme Card */
+.meme-card {
+    border-radius: var(--radius-lg);
+    padding: 2px;
+    position: relative;
+    overflow: hidden;
+    --active-glow: var(--glow-stable);
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 25px rgba(var(--active-glow), 0.12);
+    }
+
+    50% {
+        box-shadow: 0 0 50px rgba(var(--active-glow), 0.28);
+    }
+}
+
+.meme-card-inner {
+    background: var(--bg-primary);
+    border-radius: calc(var(--radius-lg) - 2px);
+    padding: 2.5rem 1.8rem;
+    text-align: center;
+}
+
+.meme-card-header {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.meme-emoji {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 0.8rem;
+    animation: emojiFloat 3s ease-in-out infinite;
+}
+
+@keyframes emojiFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.meme-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+}
+
+.meme-name {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.meme-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 330px;
+    margin: 0 auto 1.5rem;
+}
+
+.meme-badge {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+}
+
+.meme-card-footer {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.meme-card-footer strong {
+    color: var(--text-secondary);
+}
+
+/* ── Category Card Themes ─────────────────────────────────── */
+.meme-card[data-category="ALPHA"] {
+    --active-glow: var(--glow-alpha);
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 170, 0, 0.08));
+}
+
+.meme-card[data-category="ALPHA"] .meme-title {
+    color: #ffd700;
+}
+
+.meme-card[data-category="ALPHA"] .meme-badge {
+    background: rgba(255, 215, 0, 0.12);
+    color: #ffd700;
+}
+
+.meme-card[data-category="SAVAGE"] {
+    --active-glow: var(--glow-savage);
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(59, 130, 246, 0.08));
+}
+
+.meme-card[data-category="SAVAGE"] .meme-title {
+    color: #c084fc;
+}
+
+.meme-card[data-category="SAVAGE"] .meme-badge {
+    background: rgba(168, 85, 247, 0.12);
+    color: #c084fc;
+}
+
+.meme-card[data-category="SILENT"] {
+    --active-glow: var(--glow-silent);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(30, 58, 138, 0.08));
+}
+
+.meme-card[data-category="SILENT"] .meme-title {
+    color: #60a5fa;
+}
+
+.meme-card[data-category="SILENT"] .meme-badge {
+    background: rgba(59, 130, 246, 0.12);
+    color: #60a5fa;
+}
+
+.meme-card[data-category="CLOWN"] {
+    --active-glow: var(--glow-clown);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(249, 115, 22, 0.12));
+}
+
+.meme-card[data-category="CLOWN"] .meme-title {
+    color: #f87171;
+}
+
+.meme-card[data-category="CLOWN"] .meme-badge {
+    background: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+}
+
+.meme-card[data-category="STABLE"] {
+    --active-glow: var(--glow-stable);
+    background: linear-gradient(135deg, rgba(107, 114, 128, 0.15), rgba(75, 85, 99, 0.06));
+}
+
+.meme-card[data-category="STABLE"] .meme-title {
+    color: #9ca3af;
+}
+
+.meme-card[data-category="STABLE"] .meme-badge {
+    background: rgba(107, 114, 128, 0.12);
+    color: #9ca3af;
+}
+
+/* Action Buttons */
+.action-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.7rem;
+    margin: 1.5rem 0;
+}
+
+.action-btn {
+    padding: 0.7rem 0.4rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+.action-btn:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-1px);
+}
+
+.audio-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.audio-btn {
+    flex: 1;
+    padding: 0.55rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-family: var(--font);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.audio-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+}
+
+/* ═══ RESPONSIVE ═════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .engine-grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    .home-brand h1 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .engine-logo {
+        font-size: 1.8rem;
+    }
+
+    .meme-title {
+        font-size: 1.45rem;
+    }
+
+    .meme-emoji {
+        font-size: 3.2rem;
+    }
+
+    .mode-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 380px) {
+    .mode-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .action-row {
+        grid-template-columns: 1fr;
+    }
+}

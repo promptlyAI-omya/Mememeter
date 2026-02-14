@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemeMeter — Aaj Tum Kya Nikloge?</title>
+    <meta name="description"
+        content="MemeMeter — Find your psychological identity. Alpha, Savage, Silent, or Reality Check?" />
+    <meta name="theme-color" content="#06060e" />
+    <meta property="og:title" content="MemeMeter — Aaj Tum Kya Nikloge?" />
+    <meta property="og:description" content="Find your meme personality! Are you Alpha, Savage, Silent, or Clown?" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mememeter.help" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+
+    <!-- AD SLOT TOP -->
+    <div class="ad-slot" id="ad-top">
+        <span class="ad-placeholder">Ad Space</span>
+    </div>
+
+    <main class="engine-container" id="app">
+
+        <!-- ===== HEADER ===== -->
+        <header class="engine-header">
+            <h1 class="engine-logo">
+                Meme<span class="logo-accent">Meter</span><span class="logo-dot">.help</span>
+            </h1>
+            <p class="engine-tagline">Aaj Tum Kya Nikloge?</p>
+        </header>
+
+        <!-- ===== INPUT SECTION ===== -->
+        <section id="input-section">
+            <div class="input-card">
+                <label for="username" class="input-label">Enter Your Name</label>
+                <input type="text" id="username" class="input-field" placeholder="Apna naam daal bhai..." maxlength="30"
+                    autocomplete="off" />
+
+                <label class="input-label">Select Mode</label>
+                <div class="mode-grid" id="mode-grid">
+                    <button class="mode-btn active" data-mode="Random">🎲 Random</button>
+                    <button class="mode-btn" data-mode="Paisa">💰 Paisa</button>
+                    <button class="mode-btn" data-mode="Love">❤️ Love</button>
+                    <button class="mode-btn" data-mode="Respect">🫡 Respect</button>
+                    <button class="mode-btn" data-mode="IQ">🧠 IQ</button>
+                </div>
+
+                <button class="cta-btn" id="check-btn">
+                    <span class="cta-text">Check My Level</span>
+                    <span class="cta-icon">⚡</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== LOADING SECTION ===== -->
+        <section class="loading-section hidden" id="loading-section">
+            <div class="loader-ring">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+            </div>
+            <p class="loading-msg" id="loading-msg">Initializing...</p>
+        </section>
+
+        <!-- ===== RESULT SECTION ===== -->
+        <section class="result-section hidden" id="result-section">
+
+            <!-- Meme card (used for export) -->
+            <div class="meme-card" id="meme-card" data-category="STABLE">
+                <div class="meme-card-inner">
+                    <p class="meme-card-header">Meme Meter Result</p>
+                    <span class="meme-emoji" id="result-emoji">🎭</span>
+                    <h2 class="meme-title" id="result-title">Loading...</h2>
+                    <p class="meme-name" id="result-name"></p>
+                    <p class="meme-text" id="result-text">...</p>
+                    <span class="meme-badge" id="result-badge">CATEGORY</span>
+                    <p class="meme-card-footer">Check yours at <strong>MemeMeter.help</strong></p>
+                </div>
+            </div>
+
+            <!-- Audio Controls -->
+            <div class="audio-controls">
+                <button class="audio-btn" id="sound-btn" title="Replay Sound">🔊 <span>Replay</span></button>
+                <button class="audio-btn" id="mute-btn" title="Mute / Unmute">🔈 <span>Mute</span></button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-row">
+                <button class="action-btn" id="download-btn" title="Download Aura Card">
+                    📥 <span>Download</span>
+                </button>
+                <button class="action-btn" id="share-btn" title="Share on WhatsApp">
+                    📤 <span>Share</span>
+                </button>
+                <button class="action-btn" id="friend-btn" title="Check a Friend">
+                    👥 <span>Check Friend</span>
+                </button>
+                <button class="action-btn" id="retry-btn" title="Try Again">
+                    🔄 <span>Try Again</span>
+                </button>
+            </div>
+
+        </section>
+
+        <!-- AD SLOT RESULT -->
+        <div class="ad-slot" id="ad-result">
+            <span class="ad-placeholder">Ad Space</span>
+        </div>
+
+    </main>
+
+    <!-- AD SLOT STICKY -->
+    <div class="ad-slot ad-slot--sticky" id="ad-sticky">
+        <span class="ad-placeholder">Ad Space</span>
+    </div>
+
+    <!-- Global audio element -->
+    <audio id="engineAudio" preload="none"></audio>
+
+    <!-- Platform core + Engine data -->
+    <script src="../js/core.js"></script>
+    <script src="../js/mememeter.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Platform.init('mememeter');
+        });
+    </script>
+
+</body>
+
+</html>
