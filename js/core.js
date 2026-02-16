@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   MemeMeter.help — Platform Core (core.js)
+   promptly/mememeter.help — Platform Core (core.js)
    Engine registration, weighted random, audio, rendering, export
    ═══════════════════════════════════════════════════════════════ */
 
