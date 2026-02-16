@@ -196,3 +196,198 @@ Platform.registerEngine({
         { category: "STABLE", emoji: "🧺", title: "Laundry Day Peace", text: "Apni life neatly fold karte ho jab doosre air dry kar rahe hain." }
     ]
 });
+
+
+/* ═══════════════════════════════════════════════════════════════
+   MemeStory — Instagram Story Export Module
+   Watches result reveal, generates 9:16 story, handles download
+   & clipboard. Does NOT touch core.js or existing logic.
+   ═══════════════════════════════════════════════════════════════ */
+
+const MemeStory = (() => {
+    /* ── DOM refs (lazy-cached on init) ───────────────────────── */
+    let dom = {};
+
+    /* ── Category label map (mirrors engine categories) ───────── */
+    const catLabels = {
+        ALPHA: 'Alpha Frequency',
+        SAVAGE: 'Dominance Protocol',
+        SILENT: 'Silent Operator',
+        CLOWN: 'Reality Check',
+        STABLE: 'Balanced Core'
+    };
+
+    /* ── Truncate text to max ~3 short lines ──────────────────── */
+    function truncateText(txt, maxLen = 120) {
+        if (!txt || txt.length <= maxLen) return txt;
+        return txt.substring(0, maxLen).replace(/\s+\S*$/, '') + '…';
+    }
+
+    /* ── Populate the hidden 9:16 story container ─────────────── */
+    function populateStory() {
+        const emoji = document.getElementById('result-emoji')?.textContent || '🎭';
+        const title = document.getElementById('result-title')?.textContent || '';
+        const name = document.getElementById('result-name')?.textContent || '';
+        const text = document.getElementById('result-text')?.textContent || '';
+        const badge = document.getElementById('result-badge')?.textContent || '';
+        const category = document.getElementById('meme-card')?.getAttribute('data-category') || 'STABLE';
+
+        dom.storyExport.setAttribute('data-category', category);
+        dom.storyEmoji.textContent = emoji;
+        dom.storyTitle.textContent = title;
+        dom.storyName.textContent = name;
+        dom.storyText.textContent = truncateText(text);
+        dom.storyBadge.textContent = badge;
+    }
+
+    /* ── Generate 9:16 canvas from the hidden story container ─── */
+    async function generateStoryCanvas() {
+        populateStory();
+
+        // Brief wait for DOM paint
+        await new Promise(r => setTimeout(r, 50));
+
+        return html2canvas(dom.storyExport, {
+            backgroundColor: '#06060e',
+            scale: 1,           // already 1080×1920
+            useCORS: true,
+            logging: false,
+            width: 1080,
+            height: 1920
+        });
+    }
+
+    /* ── Download the story PNG ────────────────────────────────── */
+    async function downloadStory() {
+        const btn = dom.dlStoryBtn;
+        const span = btn.querySelector('span');
+        const origText = span.textContent;
+
+        try {
+            btn.disabled = true;
+            span.textContent = 'Generating…';
+
+            const canvas = await generateStoryCanvas();
+            const a = document.createElement('a');
+            const username = (document.getElementById('result-name')?.textContent || 'result')
+                .toLowerCase().replace(/\s+/g, '-');
+            a.download = 'mememeter-story-' + username + '.png';
+            a.href = canvas.toDataURL('image/png');
+            a.click();
+        } catch (e) {
+            console.error('Story download failed:', e);
+            alert('Could not generate story image.');
+        } finally {
+            btn.disabled = false;
+            span.textContent = origText;
+        }
+    }
+
+    /* ── Copy link to clipboard (async with fallback) ─────────── */
+    async function copyLink() {
+        const link = 'https://bit.ly/mememeter';
+        try {
+            await navigator.clipboard.writeText(link);
+        } catch {
+            // Fallback for older browsers / non-HTTPS
+            const ta = document.createElement('textarea');
+            ta.value = link;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
+    }
+
+    /* ── Show toast notification ───────────────────────────────── */
+    function showToast() {
+        dom.toast.classList.add('mm-toast--visible');
+        setTimeout(() => {
+            dom.toast.classList.remove('mm-toast--visible');
+        }, 5000);
+    }
+
+    /* ── Add to Instagram Story flow ──────────────────────────── */
+    async function addToIGStory() {
+        const btn = dom.igStoryBtn;
+        const span = btn.querySelector('span');
+        const origText = span.textContent;
+
+        try {
+            btn.disabled = true;
+            span.textContent = 'Preparing…';
+
+            const canvas = await generateStoryCanvas();
+            const a = document.createElement('a');
+            const username = (document.getElementById('result-name')?.textContent || 'result')
+                .toLowerCase().replace(/\s+/g, '-');
+            a.download = 'mememeter-story-' + username + '.png';
+            a.href = canvas.toDataURL('image/png');
+            a.click();
+
+            // Copy share link to clipboard
+            await copyLink();
+
+            // Show instruction toast
+            showToast();
+        } catch (e) {
+            console.error('IG Story flow failed:', e);
+            alert('Could not generate story image.');
+        } finally {
+            btn.disabled = false;
+            span.textContent = origText;
+        }
+    }
+
+    /* ── Randomize social proof text ──────────────────────────── */
+    function setSocialProof() {
+        const pct = Math.floor(Math.random() * 26) + 60; // 60–85
+        dom.socialProof.textContent = pct + '% users shared their result.';
+    }
+
+    /* ── Watch result section visibility via MutationObserver ─── */
+    function watchResultReveal() {
+        const resultSection = document.getElementById('result-section');
+        if (!resultSection) return;
+
+        const observer = new MutationObserver(() => {
+            if (!resultSection.classList.contains('hidden')) {
+                populateStory();
+                setSocialProof();
+            }
+        });
+
+        observer.observe(resultSection, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    }
+
+    /* ══ PUBLIC INIT ══════════════════════════════════════════════ */
+    return {
+        init() {
+            // Cache DOM
+            dom = {
+                storyExport: document.getElementById('mm-story-export'),
+                storyEmoji: document.getElementById('mm-story-emoji'),
+                storyTitle: document.getElementById('mm-story-title'),
+                storyName: document.getElementById('mm-story-name'),
+                storyText: document.getElementById('mm-story-text'),
+                storyBadge: document.getElementById('mm-story-badge'),
+                dlStoryBtn: document.getElementById('mm-dl-story-btn'),
+                igStoryBtn: document.getElementById('mm-ig-story-btn'),
+                socialProof: document.getElementById('mm-social-proof'),
+                toast: document.getElementById('mm-toast')
+            };
+
+            // Bind buttons (single listeners, no duplicates)
+            dom.dlStoryBtn.addEventListener('click', downloadStory);
+            dom.igStoryBtn.addEventListener('click', addToIGStory);
+
+            // Watch result reveal to sync story data
+            watchResultReveal();
+        }
+    };
+})();
